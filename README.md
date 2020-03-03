@@ -1,5 +1,9 @@
 # insilico
 
+Runs an augmented 1D elementary cellular automaton with two cell states and a 
+five cell neighborhood and creates a PNG image where each pixel in a row 
+represents a cell and each row represents a successive generation of the CA.
+
 ```
 Usage of ./insilico:
   -o string
