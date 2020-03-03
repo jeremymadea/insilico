@@ -3,15 +3,15 @@
 ```
 Usage of ./insilico:
   -o string
-        set the output file. (default "image.png")
+        Set the output file. (default "image.png")
   -p float
-        set random init percentage. (default 0.5)
+        Set random init percentage. (default 0.5)
   -r int
-        set ruleset. (default -1)
+        Set ruleset. Choose random one if negative. (default -1)
   -s int
-        set the seed. (default 1583241661879998000)
+        Set the seed. Use the system time if negative. (default -1)
   -x int
-        set the width. (default 640)
+        Set the width. (default 640)
   -y int
-        set the height. (default 640)
+        Set the height. (default 640)
 ```
