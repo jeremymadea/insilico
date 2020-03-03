@@ -1,5 +1,6 @@
 # insilico
 
+```
 Usage of ./insilico:
   -o string
         set the output file. (default "image.png")
@@ -13,4 +14,4 @@ Usage of ./insilico:
         set the width. (default 640)
   -y int
         set the height. (default 640)
-
+```
