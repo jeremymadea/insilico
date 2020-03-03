@@ -27,7 +27,14 @@ func NewCA1D(w int, rules uint32) *CA1D {
 		Current: make([]CellState, w) } 
 }
 
-func (ca *CA1D) InitRandomly(pct float64) { 
+func (ca *CA1D) InitSimple(cs CellState) {
+	for x := 0; x < ca.Width; x++ {
+		ca.first[x] = cs 
+		ca.Current[x] = cs
+	}
+}
+
+func (ca *CA1D) InitRandom(pct float64) { 
 	for x := 0; x < ca.Width; x++ {
 		if rand.Float64() < pct {
 			ca.first[x] = Live
@@ -36,6 +43,48 @@ func (ca *CA1D) InitRandomly(pct float64) {
 			ca.first[x] = Dead
 			ca.Current[x] = Dead
 		}
+	}
+}
+
+func (ca *CA1D) InitCenter(cs CellState, pattern string) {
+
+	ca.InitSimple(cs) // TODO Should probably skip if cs == Dead
+
+        length := len(pattern)
+	i := 0
+
+	if length <= ca.Width { 
+		i = (ca.Width - length) / 2
+	}
+
+	for j := 0; i<ca.Width && j<length;i,j=i+1,j+1 { 
+		if pattern[j] == '0' {
+			ca.first[i] = Dead
+			ca.Current[i] = Dead
+		} else { 
+			ca.first[i] = Live
+			ca.Current[i] = Live
+		}
+	}
+}
+
+func (ca *CA1D) InitRepeat(pattern string) {
+	length := len(pattern)
+	if length <= 0 {
+		return // TODO: real handling of this case.
+	}
+
+	j := 0
+	for i := 0; i < ca.Width; i++ { 
+		if pattern[j] == '0' {
+			ca.first[i] = Dead
+			ca.Current[i] = Dead
+		} else { 
+			ca.first[i] = Live
+			ca.Current[i] = Live
+		}
+		j++
+		j %= length
 	}
 }
 
