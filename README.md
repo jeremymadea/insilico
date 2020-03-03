@@ -6,13 +6,17 @@ represents a cell and each row represents a successive generation of the CA.
 
 ```
 Usage of ./insilico:
+  -m string
+        Set init mode. random|center|ctralt|repeat|live|dead (default "random")
   -o string
         Set the output file. (default "image.png")
   -p float
         Set random init percentage. (default 0.5)
   -r int
         Set ruleset. Choose random one if negative. (default -1)
-  -s int
+  -s string
+        Set start pattern. (default "1")
+  -seed int
         Set the seed. Use the system time if negative. (default -1)
   -x int
         Set the width. (default 640)
