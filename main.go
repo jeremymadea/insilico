@@ -35,6 +35,24 @@ func hex2color(hex string) color.NRGBA {
 	return color.NRGBA{R:rgb[0], G:rgb[1], B:rgb[2], A:255}
 }
 
+func MakeImage(ca *ca1d.CA1D, h int, w, b color.Color) *image.NRGBA {
+        img := image.NewNRGBA(image.Rect(0, 0, ca.Width, h))
+
+        // We create one horizontal line of pixels per generation of
+        // the CA.
+        for y := 0; y < h; y++ {
+                for x := 0; x < ca.Width; x++ {
+                        if ca.Current[x] == ca1d.Live {
+                                img.Set(x, y, w)
+                        } else {
+                                img.Set(x, y, b)
+                        }
+                }
+                ca.Generate() // Calculate the next generation of the CA.
+        }
+	return img
+}
+
 func main() {
 	defaultSeed := time.Now().UnixNano()
  
@@ -109,20 +127,8 @@ func main() {
 			ca.InitRandom(pct)
 	}
 
-	img := image.NewNRGBA(image.Rect(0, 0, width, height))
+	img := MakeImage(ca, height, liveColor, deadColor)
 
-	// We create one horizontal line of pixels per generation of 
-	// the CA.
-	for y := 0; y < height; y++ {
-		for x := 0; x < ca.Width; x++ { 
-			if ca.Current[x] == ca1d.Live { 
-				img.Set(x, y, liveColor)
-			} else {
-				img.Set(x, y, deadColor)
-			}
-		}
-		ca.Generate() // Calculate the next generation of the CA.
-	}
         //outfn = strings.Replace(outfn, "#", fmt.Sprintf("%08X",ruleset), 1)
         outfn = strings.Replace(outfn, "#", fmt.Sprintf("%d",ruleset), 1)
 

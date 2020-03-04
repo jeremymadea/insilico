@@ -6,6 +6,8 @@ represents a cell and each row represents a successive generation of the CA.
 
 ```
 Usage of ./insilico:
+  -b string
+        Set dead cell color (hex). (default "000000")
   -m string
         Set init mode. random|center|ctralt|repeat|live|dead (default "random")
   -o string
@@ -18,6 +20,8 @@ Usage of ./insilico:
         Set start pattern. (default "1")
   -seed int
         Set the seed. Use the system time if negative. (default -1)
+  -w string
+        Set live cell color (hex). (default "FFFFFF")
   -x int
         Set the width. (default 640)
   -y int
