@@ -53,6 +53,8 @@ func MakeImage(ca *ca1d.CA1D, h int, w, b color.Color) *image.NRGBA {
 	return img
 }
 
+
+
 func main() {
 	defaultSeed := time.Now().UnixNano()
  
@@ -70,15 +72,19 @@ func main() {
 		"Set the seed. Use the system time if negative.")
 
 	width, height := defWidth, defHeight
-	flag.IntVar(&width, "x", width, "Set the width.")
-	flag.IntVar(&height, "y", height, "Set the height.")
+	flag.IntVar(&width, "x", width, "Set the `width` in pixels.")
+	flag.IntVar(&height, "y", height, "Set the `height` in pixels.")
 
 	pct := 0.5
-	flag.Float64Var(&pct, "p", pct, "Set random init percentage.")
+	flag.Float64Var(&pct, "p", pct, "Set random init `percentage`.")
 
 	ruleset := -1
 	flag.IntVar(&ruleset, "r", ruleset, 
 		"Set ruleset. Choose random one if negative.")
+
+	rshex := ""
+	flag.StringVar(&rshex, "R", rshex, 
+		"Set ruleset. (8 digit hex) Note: -r will be ignored.")
 
 	outfn := "image.png"
 	flag.StringVar(&outfn, "o", outfn, 
@@ -107,6 +113,12 @@ func main() {
 		ruleset = int(rand.Uint32())
 	}
 
+	if rshex != "" {
+		if u, e := strconv.ParseUint(rshex, 16, 32); e == nil { 
+			ruleset = int(u)
+		}
+	}
+
 	ca := ca1d.NewCA1D(width, uint32(ruleset))
 
 	switch initMode { 
@@ -129,7 +141,7 @@ func main() {
 
 	img := MakeImage(ca, height, liveColor, deadColor)
 
-        //outfn = strings.Replace(outfn, "#", fmt.Sprintf("%08X",ruleset), 1)
+        outfn = strings.Replace(outfn, "$", fmt.Sprintf("%08X",ruleset), 1)
         outfn = strings.Replace(outfn, "#", fmt.Sprintf("%d",ruleset), 1)
 
 	f, err := os.Create(outfn)
