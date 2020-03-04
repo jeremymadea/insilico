@@ -29,3 +29,9 @@ Usage of ./insilico:
   -y height
         Set the height in pixels. (default 640)
 ```
+
+Although not documented in the usage message, if the filename specified with 
+the -o flag contains at least one '#' character, the first of them will be 
+replaced with the ruleset as a decimal integer. Similarly, if it contains at
+least one '$' character, the first of them will be replaced with the ruleset
+as a hexadecimal integer. Both special characters may be used at the same time.
