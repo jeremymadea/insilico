@@ -5,20 +5,35 @@ package main
 
 import (
         "flag"
+	"fmt"
 	"image"
 	"image/color"
 	"image/png"
 	"log"
-	"os"
-        "github.com/jeremymadea/insilico/ca1d"
 	"math/rand"
+	"os"
+	"strconv"
+	"strings"
 	"time"
+        "github.com/jeremymadea/insilico/ca1d"
 )
 
 const defWidth, defHeight = 640, 640
 
 var liveColor = color.NRGBA{R:255, G:255, B:255, A:255};
 var deadColor = color.NRGBA{R:0,   G:0,   B:0,   A:255};
+
+func hex2color(hex string) color.NRGBA {
+	rgb := make([]uint8,4)
+	for i:=0; i<len(hex) && i<6; i+=2 {
+		if u, e := strconv.ParseUint(hex[i:i+2], 16, 8); e == nil { 
+			rgb[i/2] = uint8(u)
+		} else { 
+			rgb[i/2] = 0
+		}
+	}
+	return color.NRGBA{R:rgb[0], G:rgb[1], B:rgb[2], A:255}
+}
 
 func main() {
 	defaultSeed := time.Now().UnixNano()
@@ -30,7 +45,7 @@ func main() {
 
 	initMode := "random"
 	flag.StringVar(&initMode, "m", initMode, 
-		"Set init mode. (random|center|ctralt|repeat|live|dead)")
+		"Set init mode. random|center|ctralt|repeat|live|dead")
     
 	seed := int64(-1)
 	flag.Int64Var(&seed, "seed", seed, 
@@ -48,10 +63,19 @@ func main() {
 		"Set ruleset. Choose random one if negative.")
 
 	outfn := "image.png"
-	flag.StringVar(&outfn, "o", outfn, "Set the output file.")
+	flag.StringVar(&outfn, "o", outfn, 
+		"Set the output file.")
+
+	white := "FFFFFF" // white defaults to white. 
+	flag.StringVar(&white, "w", white, "Set live cell color (hex).")
+
+	black := "000000" // black defaults to black.
+	flag.StringVar(&black, "b", black, "Set dead cell color (hex).")
 
 	flag.Parse()
 
+	liveColor = hex2color(white) // white might not be white.
+	deadColor = hex2color(black) // black might not be black.
 
 	// A negative value for seed means we must use the default.
 	if seed < 0 { 
@@ -99,6 +123,8 @@ func main() {
 		}
 		ca.Generate() // Calculate the next generation of the CA.
 	}
+        //outfn = strings.Replace(outfn, "#", fmt.Sprintf("%08X",ruleset), 1)
+        outfn = strings.Replace(outfn, "#", fmt.Sprintf("%d",ruleset), 1)
 
 	f, err := os.Create(outfn)
 	if err != nil {
