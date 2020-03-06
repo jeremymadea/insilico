@@ -16,7 +16,10 @@ var rootHtml = `
    margin-left: auto; 
    margin-right: auto;
  }
- img, table, td, tr {
+ img { 
+   border: 1px solid white;
+ }
+ table, td, tr {
    padding: 0px;
    border: 0px;
    border-spacing: 0px;
@@ -26,18 +29,24 @@ var rootHtml = `
    bottom: 5px;
    right: 5px;
  }
+ #random-link {
+   position: absolute;
+   top: 5px;
+   right: 5px;
+ }
 
 </style>
 <body>
 <div style="text-align: center;">
 <h1>Ruleset: {{.C.Ruleset}}</h1>
 </div>
+<a id="random-link" href="/?rd=-1">Choose Randomly</a>
 <table>
 <tr>
 {{range .MutationSetA}}{{template "td" .}}{{end}}
 </tr><tr>
 {{range .MutationSetB}}{{template "td" .}}{{end}}
-<td colspan="4" rowspan="4">
+<td colspan="4" rowspan="4" style="text-align:center;">
   <a href="/scope?rd={{.C.Ruleset}}&w=640&h=640"><img src="/capng?rd={{.C.Ruleset}}" /></a>
 </td>
 {{range .MutationSetC}}{{template "td" .}}{{end}}

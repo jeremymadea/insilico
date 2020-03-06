@@ -342,7 +342,7 @@ func webDebug(w http.ResponseWriter, r *http.Request) {
 func webRoot(w http.ResponseWriter, r *http.Request) {
 	cfg := NewConfigFromForm(r);
 	t := template.Must(template.New("root").Parse(rootHtml))
-	muts := mutations(global.Ruleset)
+	muts := mutations(cfg.Ruleset)
 
 	data := struct{
 		C Config
