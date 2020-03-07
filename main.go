@@ -215,6 +215,9 @@ func main() {
 	flag.BoolVar(&explorerMode, "explorer", explorerMode,
 		"Start in explorer mode. Runs as a webapp on http://localhost:8084.")
 
+	port := uint(8084)
+	flag.UintVar(&port, "port", port, "Select the port to run the webapp on.")
+
 	startPattern := "1"
 	flag.StringVar(&startPattern, "s", startPattern,
 		"Set start pattern.")
@@ -298,9 +301,9 @@ func main() {
 		http.HandleFunc("/scope", webScope)
 		http.HandleFunc("/capng", webCapng)
 		http.HandleFunc("/shutdown", webShutdown)
-		go openbrowser("http://localhost:8084")
-		log.Fatal(http.ListenAndServe("localhost:8084", nil))
-
+		webserver := fmt.Sprintf("localhost:%v", port)
+		go openbrowser("http://" + webserver)
+		log.Fatal(http.ListenAndServe(webserver, nil))
 	} else {
 		// Running as a command line tool. Just write our image out.
 		outfn = strings.Replace(outfn, "$", fmt.Sprintf("%08X",ruleset), 1)
