@@ -34,11 +34,22 @@ var rootHtml = `
    top: 5px;
    right: 5px;
  }
-
+ #rh-label, #rh {
+   font-size: 18pt;
+   font-weight: bold; 
+ }
+ #rh { 
+   text-align: center;
+   width: 9.5ch;
+ }
 </style>
 <body>
 <div style="text-align: center;">
-<h1>Ruleset: {{.C.Ruleset}}</h1>
+<form action="" method="get">
+  <label id="rh-label" for="rh">Ruleset:</label>
+  <input id="rh" type="text" name="rh" maxlength="8" value="{{.C.RSHex}}" />
+  <input type="submit" style="display: none;" />
+</form>
 </div>
 <a id="random-link" href="/?rd=-1">Choose Randomly</a>
 <table>
@@ -117,7 +128,7 @@ var scopeHtml = `<html>
 <h1>RuleSet: {{.C.RSHex}}</h1>
 <hr>
 <div id="scope-form">
- <form action="" method=get>
+ <form action="" method="get">
  <input type="hidden" name="rd" value="{{.C.Ruleset}}">
   <fieldset><legend>Dimensions</legend>
   <div class="form-fieldset">
@@ -176,7 +187,7 @@ var scopeHtml = `<html>
      </select>
      <!-- <input type="text" size="6" name="m" value="{{.C.InitMode}}" /> -->
    </div> 
-   <div class="form-field-comment">center|ctralt|random|repeat|live|dead</div> 
+   <div class="form-field-comment"></div> 
   </div>  
 
   <div class="form-field">

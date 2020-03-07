@@ -213,7 +213,7 @@ func main() {
 	// Setup and parse command line arguments.
 	explorerMode := false
 	flag.BoolVar(&explorerMode, "explorer", explorerMode,
-		"Start in explorer mode. Runs a webserver on localhost:8084")
+		"Start in explorer mode. Runs as a webapp on http://localhost:8084.")
 
 	startPattern := "1"
 	flag.StringVar(&startPattern, "s", startPattern,
