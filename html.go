@@ -34,6 +34,11 @@ var rootHtml = `
    top: 5px;
    right: 5px;
  }
+ #builder-link {
+   position: absolute;
+   top: 20px;
+   right: 5px;
+ }
  #rh-label, #rh {
    font-size: 18pt;
    font-weight: bold; 
@@ -52,6 +57,7 @@ var rootHtml = `
 </form>
 </div>
 <a id="random-link" href="/?rd=-1">Choose Randomly</a>
+<a id="builder-link" href="/builder?rh={{.C.RSHex}}">Builder</a>
 <table>
 <tr>
 {{range .MutationSetA}}{{template "td" .}}{{end}}
@@ -208,6 +214,528 @@ var scopeHtml = `<html>
 <div id="footer">
 <a id="shutdown-link" href="/shutdown">Shutdown InSilico Explorer</a>
 </div>
+</body>
+</html>
+`
+
+var builderHtml = `
+<html>
+<head>
+<title>In Silico Explorer</title>
+<style type="text/css">
+ body {
+   font-family: sans-serif; 
+   font-size: 10pt;
+ }
+ table { 
+   margin-left: auto; 
+   margin-right: auto;
+ }
+ img { 
+   border: 1px solid white;
+ }
+/* table, td, tr {
+   padding: 0px;
+   border: 0px;
+   border-spacing: 0px;
+ }*/
+ td { 
+   border: 1px solid black;
+ }
+ #shutdown-link {
+   position: absolute;
+   bottom: 5px;
+   right: 5px;
+ }
+ #random-link {
+   position: absolute;
+   top: 5px;
+   right: 5px;
+ }
+ #rh-label, #rh {
+   font-size: 18pt;
+   font-weight: bold; 
+ }
+ #rh {
+   text-align: center;
+   width: 9.5ch; 
+ }
+ .tbl-container { 
+   float: left;
+   border-right: 3px double black;
+ }
+ .first-container { 
+   border-left: 3px double black;
+ }
+ .spacer { 
+   border: none;
+ }
+ .cell { 
+   border: 1px solid black; 
+ }
+ .next { 
+   border-color: red;
+ }
+ .nbr1, .nbr2 { 
+   border: 1px solid black;
+ }
+
+ .blk { 
+   background: black;
+ }
+ .wht { 
+   background: white;
+ }
+
+ .ldsep { 
+   /*background: lightgrey; */
+   height: 3em;
+ }
+
+ .img-container { 
+   float: left;
+   padding-left: 30px;
+ }
+
+ td a { 
+   text-decoration: none;
+   display: block; 
+   width: 100%;
+ }
+
+</style>
+<body>
+
+<h1>Ruleset: {{.C.RSHex}}</h1>
+
+<!-- BEGIN GENERATED CODE -->
+<div class="tbl-container"><table>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 0}} cell next"><a href="?rd={{index .RSNew 0}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 1}} cell next"><a href="?rd={{index .RSNew 1}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 2}} cell next"><a href="?rd={{index .RSNew 2}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 3}} cell next"><a href="?rd={{index .RSNew 3}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer ldsep" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 4}} cell next"><a href="?rd={{index .RSNew 4}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 5}} cell next"><a href="?rd={{index .RSNew 5}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 6}} cell next"><a href="?rd={{index .RSNew 6}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 7}} cell next"><a href="?rd={{index .RSNew 7}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+</table></div>
+<div class="tbl-container"><table>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 8}} cell next"><a href="?rd={{index .RSNew 8}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 9}} cell next"><a href="?rd={{index .RSNew 9}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 10}} cell next"><a href="?rd={{index .RSNew 10}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 11}} cell next"><a href="?rd={{index .RSNew 11}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer ldsep" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 12}} cell next"><a href="?rd={{index .RSNew 12}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 13}} cell next"><a href="?rd={{index .RSNew 13}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 14}} cell next"><a href="?rd={{index .RSNew 14}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 15}} cell next"><a href="?rd={{index .RSNew 15}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+</table></div>
+<div class="tbl-container"><table>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 16}} cell next"><a href="?rd={{index .RSNew 16}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 17}} cell next"><a href="?rd={{index .RSNew 17}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 18}} cell next"><a href="?rd={{index .RSNew 18}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 19}} cell next"><a href="?rd={{index .RSNew 19}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer ldsep" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 20}} cell next"><a href="?rd={{index .RSNew 20}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 21}} cell next"><a href="?rd={{index .RSNew 21}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 22}} cell next"><a href="?rd={{index .RSNew 22}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 23}} cell next"><a href="?rd={{index .RSNew 23}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+</table></div>
+<div class="tbl-container"><table>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 24}} cell next"><a href="?rd={{index .RSNew 24}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 25}} cell next"><a href="?rd={{index .RSNew 25}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 26}} cell next"><a href="?rd={{index .RSNew 26}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 27}} cell next"><a href="?rd={{index .RSNew 27}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer ldsep" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 28}} cell next"><a href="?rd={{index .RSNew 28}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 29}} cell next"><a href="?rd={{index .RSNew 29}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 30}} cell next"><a href="?rd={{index .RSNew 30}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+<tr><td class="spacer" colspan="5">&nbsp;</td></tr>
+<tr>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="cell wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr1 wht">&nbsp;&nbsp;&nbsp;</td>
+<td class="nbr2 wht">&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td class="spacer" colspan="2"></td>
+<td class="{{index .Color 31}} cell next"><a href="?rd={{index .RSNew 31}}"><div>&nbsp;</div></a></td>
+<td class="spacer" colspan="2"></td>
+</tr>
+</table></div>
+<!--END GENERATED CODE -->
+
+<div class="img-container">
+<img src="/capng?rd={{.C.Ruleset}}&w=640&h=640" />
+</div>
+
+<a id="shutdown-link" href="/shutdown">Shutdown InSilico Explorer</a>
 </body>
 </html>
 `

@@ -99,6 +99,18 @@ func mutations(ruleset int) []int {
 	return ret
 }
 
+func bits2colors(ruleset int) []string {
+	ret := make([]string, 32)
+	for i:=0; i<32; i++ {
+		if 1 & (ruleset >> i) == 1 {
+			ret[i] = "wht"
+		} else {
+			ret[i] = "blk"
+		}
+	}
+	return ret
+}
+
 func MakeImage(ca *ca1d.CA1D, h int, w, b color.Color) *image.NRGBA {
 	img := image.NewNRGBA(image.Rect(0, 0, ca.Width, h))
 
@@ -299,6 +311,7 @@ func main() {
 		http.HandleFunc("/", webRoot)
 		http.HandleFunc("/debug", webDebug)
 		http.HandleFunc("/scope", webScope)
+		http.HandleFunc("/builder", webBuilder)
 		http.HandleFunc("/capng", webCapng)
 		http.HandleFunc("/shutdown", webShutdown)
 		webserver := fmt.Sprintf("localhost:%v", port)
@@ -367,6 +380,30 @@ func webRoot(w http.ResponseWriter, r *http.Request) {
 		muts[24:],
     }
     err := t.Execute(w, data)
+	if (err != nil) {
+		log.Print(err)
+	}
+}
+
+func webBuilder(w http.ResponseWriter, r *http.Request) {
+	cfg := NewConfigFromForm(r);
+	t := template.Must(template.New("builder").Parse(builderHtml))
+
+	//cfg.Ruleset
+    muts := mutations(cfg.Ruleset)
+	clrs := bits2colors(cfg.Ruleset)
+
+	data := struct{
+		C Config
+		Color []string
+		RSNew []int
+	}{
+		cfg,
+		clrs,
+		muts,
+	}
+
+	err := t.Execute(w, data)
 	if (err != nil) {
 		log.Print(err)
 	}
