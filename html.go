@@ -112,6 +112,12 @@ var scopeHtml = `<html>
    right: 5px;
  }
 
+ #builder-link { 
+   position: absolute;
+   top: 20px; 
+   right: 5px;
+ }
+
  #shutdown-link {
    position: absolute;
    bottom: 5px;
@@ -209,7 +215,8 @@ var scopeHtml = `<html>
   <input type="submit">
  </form>
 </div><!-- scope-form -->
-<a id="chooser-link" href="/?rd={{.C.Ruleset}}">Back to Chooser</a>
+<a id="chooser-link" href="/?rd={{.C.Ruleset}}">Chooser</a>
+<a id="builder-link" href="/builder?rd={{.C.Ruleset}}">Builder</a>
 </div>
 <div id="footer">
 <a id="shutdown-link" href="/shutdown">Shutdown InSilico Explorer</a>
@@ -321,7 +328,7 @@ var builderHtml = `
 </form>
 </div>
 <a id="random-link" href="?rd=-1">Choose Randomly</a>
-<a id="chooser-link" href="/?rd={{.C.Ruleset}}">Back to Chooser</a>
+<a id="chooser-link" href="/?rd={{.C.Ruleset}}">Chooser</a>
 <!-- BEGIN GENERATED CODE -->
 <div class="tbl-container first-container"><table>
 <tr>
