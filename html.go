@@ -247,6 +247,11 @@ var builderHtml = `
    bottom: 5px;
    right: 5px;
  }
+ #chooser-link { 
+   position: absolute;
+   top: 20px; 
+   right: 5px;
+ }
  #random-link {
    position: absolute;
    top: 5px;
@@ -266,6 +271,7 @@ var builderHtml = `
  }
  .first-container { 
    border-left: 3px double black;
+   clear: left;
  }
  .spacer { 
    border: none;
@@ -306,10 +312,18 @@ var builderHtml = `
 </style>
 <body>
 
-<h1>Ruleset: {{.C.RSHex}}</h1>
-
+<!-- <h1>Ruleset: {{.C.RSHex}}</h1> -->
+<div style="float: left; clear: right;">
+<form action="" method="get">
+  <label id="rh-label" for="rh">Ruleset:</label>
+  <input id="rh" type="text" name="rh" maxlength="8" value="{{.C.RSHex}}" />
+  <input type="submit" style="display: none;" />
+</form>
+</div>
+<a id="random-link" href="?rd=-1">Choose Randomly</a>
+<a id="chooser-link" href="/?rd={{.C.Ruleset}}">Back to Chooser</a>
 <!-- BEGIN GENERATED CODE -->
-<div class="tbl-container"><table>
+<div class="tbl-container first-container"><table>
 <tr>
 <td class="nbr2 blk">&nbsp;&nbsp;&nbsp;</td>
 <td class="nbr1 blk">&nbsp;&nbsp;&nbsp;</td>
@@ -732,7 +746,7 @@ var builderHtml = `
 <!--END GENERATED CODE -->
 
 <div class="img-container">
-<img src="/capng?rd={{.C.Ruleset}}&w=640&h=640" />
+<img src="/capng?rd={{.C.Ruleset}}&w=480&h=480" />
 </div>
 
 <a id="shutdown-link" href="/shutdown">Shutdown InSilico Explorer</a>
