@@ -48,6 +48,8 @@ By default it uses port 8084. It will also attempt to launch a browser and
 connect to the server. If it fails to launch a browser, you can do so manually
 and enter http://localhost:8084/ in the browser's address bar. 
 
+### The Chooser
+
 Insilico's explorer mode webapp is useful for exploring the CA Ruleset space. 
 On the "Chooser" page (which is the page you start on) the current CA is 
 displayed in the middle surrounded by 32 smaller CA images, each made by
@@ -57,12 +59,16 @@ large middle image, and display its 32 mutations.
 
 ![Insilico Chooser Screenshot](doc/img/insilico_chooser.png)
 
+### The Scope
+
 Clicking on the large image on the "Chooser" page brings you to the "Scope"
 page. On this page, there are options for changing the size, colors, and 
 initialization parameters for the CA. Tweak these and submit to get a new
 image. There is a link below the form to return to the Chooser page. 
 
 ![Insilico Scope Screenshot](doc/img/insilico_scope.png)
+
+### The Builder
 
 On both the Chooser and Scope page there is a link to the "Builder." The 
 Builder allows you to visually modify the ruleset. All rules are shown on the 
