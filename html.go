@@ -137,7 +137,7 @@ var scopeHtml = `<html>
 </div>
 
 <div id="scope-right">
-<h1>RuleSet: {{.C.RSHex}}</h1>
+<h1>Ruleset: {{.C.RSHex}}</h1>
 <hr>
 <div id="scope-form">
  <form action="" method="get">
@@ -264,6 +264,11 @@ var builderHtml = `
    top: 5px;
    right: 5px;
  }
+ #scope-link {
+   position: absolute;
+   top: 35px;
+   right: 5px;
+ }
  #rh-label, #rh {
    font-size: 18pt;
    font-weight: bold; 
@@ -329,6 +334,7 @@ var builderHtml = `
 </div>
 <a id="random-link" href="?rd=-1">Choose Randomly</a>
 <a id="chooser-link" href="/?rd={{.C.Ruleset}}">Chooser</a>
+<a id="scope-link" href="/scope?rd={{.C.Ruleset}}&w=640&h=640">Scope</a>
 <!-- BEGIN GENERATED CODE -->
 <div class="tbl-container first-container"><table>
 <tr>

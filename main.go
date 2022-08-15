@@ -41,13 +41,12 @@ var global Config
 var gimg *image.NRGBA
 
 func openbrowser(url string) {
-        var err error
+	var err error
 
-		err = exec.Command("open", url).Start()
-        if err != nil {
-                log.Fatal(err)
-        }
-
+	err = exec.Command("open", url).Start()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func querystring(c Config) string {
@@ -65,17 +64,17 @@ func querystring(c Config) string {
 
 func html_modeopts(curmode string) template.HTML {
 	modes := []string{"random", "center", "ctralt", "repeat", "live", "dead"}
-    s := ""
+	s := ""
 	selected := ""
-    for _, m := range modes {
+	for _, m := range modes {
 		if m == curmode {
 			selected = " selected"
 		} else {
 			selected = ""
 		}
 		s += fmt.Sprintf(`<option value="%v"%v>%v</option>`, m, selected, m)
-        s += "\n"
-    }
+		s += "\n"
+	}
 	return template.HTML(s)
 }
 
@@ -92,10 +91,10 @@ func hex2color(hex string) color.NRGBA {
 }
 
 func mutations(ruleset int) []int {
-    ret := make([]int, 32)
-    for i:=0; i<32; i++ {
+	ret := make([]int, 32)
+	for i:=0; i<32; i++ {
 		ret[i] = ruleset ^ (1 << i)
-    }
+	}
 	return ret
 }
 
@@ -156,7 +155,7 @@ func NewConfigFromForm(r *http.Request) (cfg Config) {
 	if err := r.ParseForm(); err != nil {
 		log.Print(err)
 	}
-    for k := range r.Form {
+	for k := range r.Form {
 		v := r.Form.Get(k)
 		switch k {
 			case "rd":
@@ -200,19 +199,19 @@ func NewConfigFromForm(r *http.Request) (cfg Config) {
 					}
 				}
 			case "dc":
-                if v[0] == '#' && len(v) == 7 {
+				if v[0] == '#' && len(v) == 7 {
 					v = v[1:]
 				}
 				cfg.DColorHex = v
 			case "lc":
-                if v[0] == '#' && len(v) == 7 {
+				if v[0] == '#' && len(v) == 7 {
 					v = v[1:]
 				}
 				cfg.LColorHex = v
 			default:
 				log.Print("Bad Form Key: ", k)
 		}
-    }
+	}
 	cfg.RSHex = fmt.Sprintf("%08X", cfg.Ruleset)
 	cfg.DeadColor = hex2color(cfg.DColorHex)
 	cfg.LiveColor = hex2color(cfg.LColorHex)
@@ -304,7 +303,7 @@ func main() {
 	}
 
 	global.Ruleset = ruleset
-    global.RSHex = fmt.Sprintf("%08X", ruleset)
+	global.RSHex = fmt.Sprintf("%08X", ruleset)
 	gimg = ExecuteCA(global)
 
 	if explorerMode {
@@ -378,8 +377,8 @@ func webRoot(w http.ResponseWriter, r *http.Request) {
 		muts[16:20],
 		muts[20:24],
 		muts[24:],
-    }
-    err := t.Execute(w, data)
+	}
+	err := t.Execute(w, data)
 	if (err != nil) {
 		log.Print(err)
 	}
@@ -390,7 +389,7 @@ func webBuilder(w http.ResponseWriter, r *http.Request) {
 	t := template.Must(template.New("builder").Parse(builderHtml))
 
 	//cfg.Ruleset
-    muts := mutations(cfg.Ruleset)
+	muts := mutations(cfg.Ruleset)
 	clrs := bits2colors(cfg.Ruleset)
 
 	data := struct{
@@ -411,8 +410,8 @@ func webBuilder(w http.ResponseWriter, r *http.Request) {
 
 func webScope(w http.ResponseWriter, r *http.Request) {
 	cfg := NewConfigFromForm(r);
-    qs := querystring(cfg)
-    modeopts := html_modeopts(cfg.InitMode)
+	qs := querystring(cfg)
+	modeopts := html_modeopts(cfg.InitMode)
 
 	if r.URL.RawQuery == "" {
 		cfg.Width = 640;
@@ -431,7 +430,7 @@ func webScope(w http.ResponseWriter, r *http.Request) {
 		modeopts,
 	}
 
-    err := t.Execute(w, data)
+	err := t.Execute(w, data)
 	if (err != nil) {
 		log.Print(err)
 	}
