@@ -1,9 +1,12 @@
 # insilico
 
-Runs an augmented 1D elementary cellular automaton with two cell states and a 
-five cell neighborhood and creates a PNG image where each pixel in a row 
-represents a cell and each row represents a successive generation of the CA.
+Insilico is a tool for exploring an augmented 1D elementary cellular automaton 
+with two cell states and a five cell neighborhood. It's interactive "explorer"
+mode (see below) makes it easy to visually explore and craft rulesets. It can 
+also be used as a command line tool. 
 
+Command line arguments
+----------------------
 ```
 Usage of ./insilico:
   -R string
