@@ -52,16 +52,24 @@ mutating the current CA ruleset. A mutation is simply a bit flip. A click on
 any of these smaller images will make its ruleset current, show it as the
 large middle image, and display its 32 mutations. 
 
+![Insilico Chooser Screenshot](doc/img/insilico_chooser.png)
+
 Clicking on the large image on the "Chooser" page brings you to the "Scope"
 page. On this page, there are options for changing the size, colors, and 
 initialization parameters for the CA. Tweak these and submit to get a new
 image. There is a link below the form to return to the Chooser page. 
 
+![Insilico Scope Screenshot](doc/img/insilico_scope.png)
+
+On both the Chooser and Scope page there is a link to the "Builder." The 
+Builder allows you to visually modify the ruleset. All rules are shown on the 
+left. Simply click on the next state (highlighted in red) under any rule to
+toggle it from white to black or vice versa. 
+
+![Insilico Builder Screenshot](doc/img/insilico_builder.png)
+
 On the bottom right of all pages, there is a link for shutting down the 
 InSilico webapp.
 
-![Insilico Chooser Screenshot](doc/img/insilico_chooser.png)
 
-![Insilico Builder Screenshot](doc/img/insilico_builder.png | width=640)
 
-![Insilico Scope Screenshot](doc/img/insilico_scope.png | width=640)
