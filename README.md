@@ -60,6 +60,8 @@ image. There is a link below the form to return to the Chooser page.
 On the bottom right of all pages, there is a link for shutting down the 
 InSilico webapp.
 
-![Insilico Chooser Screenshot](doc/img/insilico_chooser.png | width=640)
+![Insilico Chooser Screenshot](doc/img/insilico_chooser.png)
+
 ![Insilico Builder Screenshot](doc/img/insilico_builder.png | width=640)
+
 ![Insilico Scope Screenshot](doc/img/insilico_scope.png | width=640)
